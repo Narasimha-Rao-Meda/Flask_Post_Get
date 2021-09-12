@@ -94,7 +94,7 @@ def saved():
         employer = request.form['employer']
 
         logging.info('Request made to add the employees data in the database')
-        logging.info(f'[ID {id_}, Name:{name}, Age:{age}, Position:{position}, Place:{place}, Salary: {salary}, Employer:{employer}]')
+        #logging.info(f'[ID {id_}, Name:{name}, Age:{age}, Position:{position}, Place:{place}, Salary: {salary}, Employer:{employer}]')
 
         data = employees(id_, name, age, position, place, employer, salary)
         db.session.add(data)
