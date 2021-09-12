@@ -15,7 +15,7 @@ app.secret_key = "Secret Key"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s-%(levelname)s-%(message)s")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://narasimharaomeda:Mnrjr$14@localhost/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://narasimharaomeda:Mnrjr$14@localhost:3306/test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 engine = create_engine('mysql://narasimharaomeda:Mnrjr$14@localhost/test')
@@ -110,8 +110,10 @@ def data():
     
     if request.method == 'GET':
         id_ = request.args.get('userid')
+        logging.info('Getting the data for {}'.format(id_))
         user_data = employees.query.get(id_)
         employee = user_data.data()
+        logging.info(employee)
         return jsonify(json.dumps(employee))
     else:
         return abort(400)
